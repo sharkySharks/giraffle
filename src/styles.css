@@ -23,12 +23,16 @@ h1 {
     min-height: 85vh;
 }
 /*---------------------------------
-form
+forms
 ---------------------------------*/
 #form-entry h1 {
     padding: 20px 0px;
 }
-#form-entry .submit {
-    padding: 20px 0px;
-    margin: 5px 0px;
+.help-block {
+    color: red;
+    padding: 5px 0px;
+}
+.submit {
+    padding: 10px 0px;
+    margin: 10px 0px;
 }

@@ -1,15 +1,20 @@
 (function() {
     angular
         .module('raffleApp', [
-            'ngRoute'
+            'ngRoute',
+            'ngMessages'
         ])
         .config(config);
 
         function config($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: 'app/components/main.html',
-                    controller: 'MainController as vm'
+                    templateUrl: 'app/components/create/create.html',
+                    controller: 'CreateController as vm'
+                })
+                .when('/enter', {
+                    templateUrl: 'app/components/enter/enter.html',
+                    controller: 'EnterController as vm'
                 })
         }
 })()
