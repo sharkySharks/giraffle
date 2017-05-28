@@ -1,16 +1,38 @@
 <div class="container-fluid" id="form-create">
     <h1>Create A Raffle:</h1>
     <div>
-        <form name="create" class="form-inline" novalidate>
-            <div class="form-group" ng-class="{ 'has-error': create.raffleName.$touched && create.raffleName.$invalid}">
+        <form
+            class="form-inline"
+            name="create"
+            novalidate>
+            <div
+                class="form-group"
+                ng-class="{ 'has-error': create.raffleName.$touched && create.raffleName.$invalid}">
                 <label for="raffleName" class="sr-only">Raffle Name</label>
-                <input type="text" ng-model="vm.raffleName" class="form-control input-lg" placeholder="Raffle Name" name="raffleName" id="raffleName" ng-required="true" />
+                <input
+                    class="form-control input-lg"
+                    id="raffleName"
+                    name="raffleName"
+                    ng-model="vm.raffleName"
+                    ng-required="true"
+                    placeholder="Raffle Name"
+                    type="text" />
             </div>
-            <div class="help-block form-group" ng-messages="create.$error" ng-if="create.$submitted && create.$error">
+            <br/>
+            <div
+                class="help-block form-group"
+                ng-messages="create.$error"
+                ng-if="create.raffleName.$touched">
                 <p ng-message="required">Raffle needs a name!</p>
             </div>
             <div class="submit">
-                <button type="submit" ng-click="" class="btn btn-primary btn-lg">Submit</button>
+                <button
+                    class="btn btn-primary btn-lg"
+                    ng-click="vm.submit()"
+                    ng-disabled="create.$invalid"
+                    type="submit">
+                    Submit
+                </button>
             </div>
         </form>
     </div>

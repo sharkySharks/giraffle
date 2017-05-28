@@ -23,16 +23,28 @@ h1 {
     min-height: 85vh;
 }
 /*---------------------------------
+generic
+---------------------------------*/
+.pad-bottom {
+    padding-bottom: 20px;
+}
+/*---------------------------------
 forms
 ---------------------------------*/
 #form-entry h1 {
     padding: 20px 0px;
 }
+#form-create h1 {
+    padding: 20px 0px;
+}
 .help-block {
-    color: red;
+    color: #d0504e;
     padding: 5px 0px;
 }
 .submit {
     padding: 10px 0px;
     margin: 10px 0px;
+}
+.has-error input{
+    background-color: #d0504e;
 }
