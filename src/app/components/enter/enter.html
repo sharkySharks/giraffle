@@ -1,6 +1,9 @@
 <div class="container-fluid" id="form-entry">
-    <h1>Enter Raffle:</h1>
     <div>
+        <h1>Put your name in the raffle.
+            <br/>
+            <small> {{ vm.title }}</small>
+        </h1>
         <form
             class="form-inline"
             name="entry"
@@ -72,5 +75,27 @@
                 </button>
             </div>
         </form>
+    </div>
+    <div>
+        <h2>Close Raffle and Select Winner(s)</h2>
+        <div class="submit" ng-if="vm.isOpen">
+            <button
+                class="btn btn-danger btn-md"
+                confirm-click="Are you sure you want to close the raffle?"
+                ng-click="vm.closeRaffle()"
+                type="submit">
+                Close Raffle
+            </button>
+        </div>
+        <div class="submit" ng-if="!vm.isOpen">
+            <button
+                class="btn btn-warning btn-md"
+                confirm-click="Are you sure you want to re-open the raffle?"
+                ng-click="vm.openRaffle()"
+                type="submit">
+                Reopen Raffle
+            </button>
+
+        </div>
     </div>
 </div>

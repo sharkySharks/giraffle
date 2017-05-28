@@ -23,19 +23,17 @@ h1 {
     min-height: 85vh;
 }
 /*---------------------------------
-generic
----------------------------------*/
-.pad-bottom {
-    padding-bottom: 20px;
-}
-/*---------------------------------
 forms
 ---------------------------------*/
 #form-entry h1 {
     padding: 20px 0px;
+    font-size: 30pt;
 }
 #form-create h1 {
     padding: 20px 0px;
+}
+#form-create a {
+    font-size: 20pt;
 }
 .help-block {
     color: #d0504e;

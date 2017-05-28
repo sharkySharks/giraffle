@@ -5,22 +5,21 @@
         .module('raffleApp')
         .controller('CreateController', CreateController)
 
-        CreateController.$inject = ['CreateRaffleSvc'];
+        CreateController.$inject = ['RaffleSvc', '$location'];
 
-        function CreateController (CreateRaffleSvc) {
+        function CreateController (RaffleSvc, $location) {
             var vm = this;
 
-            vm.raffleName = '';
+            vm.raffle = new RaffleSvc;
 
             vm.submit = submit;
 
+            vm.hideForm = false;
+
             function submit () {
-                return CreateRaffleSvc.create(vm.raffleName).then(function (data) {
-                    // create url from data response
-                    // then navigate to that using $location.path('/new-raffle-path')
-                    vm.data = data;
-                }, function (err) {
-                    // return error to the user and ask them to try again
+                vm.raffle.$save().then(function (data) {
+                    vm.url = '/enter/' + data._id;
+                    $location.path(vm.url);
                 });
             }
         }
