@@ -10,4 +10,7 @@ module.exports = function (app) {
     app.route('/api/raffles/:id')
         .get(raffle.list_a_raffle)
         .put(raffle.update_a_raffle)
+
+    app.route('/api/raffles/:id/auth')
+        .post(raffle.validate_password)
 };

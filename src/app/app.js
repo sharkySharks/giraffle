@@ -4,7 +4,7 @@
             'ngRoute',
             'ngMessages',
             'ngResource',
-            'confirm-click'
+            'ngStorage'
         ])
         .config(config);
 
@@ -19,14 +19,18 @@
                     controller: 'EnterController as vm',
                     resolve: {
                         raffle: function ($route, RaffleSvc) {
-                            return RaffleSvc
-                                .get({ id: $route.current.params.id })
-                                // .$promise
-                                // .then(function (raffle) {
-                                //     return raffle
-                                // });
+                            return RaffleSvc.get({
+                                id: $route.current.params.id
+                            });
                         }
                     }
+                })
+                .when('/draw/:id', {
+                    templateUrl: 'app/components/draw/draw.html',
+                    controller: 'DrawController as vm',
+                    // resolve: {
+                        // user needs to be authorized for specific raffle to access
+                    // }
                 })
         }
 })()

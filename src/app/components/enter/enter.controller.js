@@ -5,7 +5,9 @@
         .module('raffleApp')
         .controller('EnterController', EnterController)
 
-        function EnterController (raffle) {
+        EnterController.$inject = ['raffle', 'AuthSvc'];
+
+        function EnterController (raffle, AuthSvc) {
             var vm = this;
 
             vm.entry = {
@@ -14,7 +16,11 @@
                 phoneNumber: ''
             }
 
-            vm.submit = submit;
+            vm.rafflePassword = ''
+
+            vm.submitEntry = submitEntry;
+            vm.validatePassword = validatePassword;
+
 
             activate();
 
@@ -22,24 +28,28 @@
                 raffle.$promise.then(function (raffle) {
                     vm.raffle = raffle;
                     vm.title = raffle.name;
-                    vm.isOpen = raffle.status === 'open';
                 });
             }
 
-            function submit () {
+            function submitEntry () {
                 vm.raffle.entries.push(vm.entry);
 
-                vm.raffle.$update(function (data) {
-                    vm.hideForm = true;
+                vm.raffle.$update({ id: raffle._id }, function (data) {
+                    console.log('data:', data);
                 });
             }
 
-            function closeRaffle () {
-
+            function validatePassword () {
+                vm.auth = new AuthSvc.auth;
+                vm.auth.password = vm.rafflePassword;
+                vm.auth.$save({ id: raffle._id }, function (data) {
+                    console.log('data:', data);
+                }, function (err) {
+                    console.log('error:', err);
+                });
+                // on success store verification in localstorage so user continues to be
+                    // authenticated after they give the right password
+                // redirect to the drawing page
             }
-
-            function
-
-
         }
 })()

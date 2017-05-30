@@ -32,7 +32,7 @@ function list_a_raffle (req, res) {
 }
 
 function update_a_raffle (req, res) {
-    Raffle.findOneAndUpdate(req.params.id, req.body, { new: true }, function (err, raffle) {
+    Raffle.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, function (err, raffle) {
         if (err) {
             res.send(err);
         }
@@ -40,9 +40,26 @@ function update_a_raffle (req, res) {
     });
 }
 
+function validate_password (req, res) {
+    Raffle.findById(req.params.id, function (err, raffle) {
+        if (err) {
+            res.send(err)
+        }
+        raffle.comparePassword(req.body.password, function (err, isMatch) {
+            if (err) res.send(err);
+            if (isMatch) {
+                res.json(raffle);
+            } else {
+                res.status('401').send('Incorrect Password.');
+            }
+        });
+    });
+}
+
 module.exports = {
     list_all_raffles: list_all_raffles,
     create_a_raffle: create_a_raffle,
     list_a_raffle: list_a_raffle,
-    update_a_raffle: update_a_raffle
+    update_a_raffle: update_a_raffle,
+    validate_password: validate_password
 }

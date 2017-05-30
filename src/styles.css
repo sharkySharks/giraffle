@@ -35,6 +35,9 @@ forms
 #form-create a {
     font-size: 20pt;
 }
+#form-create small {
+    font-size: 15pt;
+}
 .help-block {
     color: #d0504e;
     padding: 5px 0px;
