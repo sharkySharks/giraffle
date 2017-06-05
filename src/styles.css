@@ -27,12 +27,12 @@ forms
 ---------------------------------*/
 #form-entry h1 {
     padding: 20px 0px;
-    font-size: 30pt;
+    /*font-size: 30pt;*/
     /*text-align:center;*/
 }
 #drawing h1 {
     padding: 20px 0px;
-    font-size: 30pt;
+    /*font-size: 30pt;*/
 }
 #form-create h1 {
     padding: 20px 0px;

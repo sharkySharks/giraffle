@@ -38,14 +38,19 @@
             }
 
             function drawWinner () {
+
                 RaffleSvc.get({ id: raffle._id }, function (raffle) {
                     var winnerIndex = getRandomInt(raffle.entries.length)
                     var winner = raffle.entries[winnerIndex];
 
+                    // add the winner to the winner array
                     raffle.winners.push(winner);
+                    // remove the winner from the entries array so that they cannot be selected again
+                    raffle.entries.splice(winnerIndex, 1);
 
                     raffle.$update({ id: raffle._id }, function (raffle) {
                         vm.winners = raffle.winners;
+                        vm.totalEntries = raffle.entries.length;
                     }, function (err) {
                         console.log('err: ', err);
                     });
@@ -53,10 +58,11 @@
             }
 
             function getRandomInt(max) {
-                // randomize the selection of index entries, inclusive of the min and max values passed in
+                // randomize the selection of index entries,
+                // inclusive of the max value passed in bc using array length above
                 min = 0;
                 max = Math.floor(max);
-                return Math.floor(Math.random() * (max - min + 1)) + min;
+                return Math.floor(Math.random() * (max - min)) + min;
             }
         }
 })()

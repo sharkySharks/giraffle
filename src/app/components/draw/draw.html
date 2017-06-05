@@ -1,8 +1,11 @@
-<div class="container-fluid" id="drawing">
+<div class="container-fluid text-center" id="drawing">
     <h1>Draw Winners!
         <br/>
-        <small>{{ vm.title }} | # Entries: {{ vm.totalEntries }}<div>
-    </div></small>
+        <small>{{ vm.title }}
+            <div class="hidden-md hidden-lg"></div>
+            <span class="hidden-xs hidden-sm">|</span>
+            # Entries: {{ vm.totalEntries }}
+        </small>
     </h1>
     <div>
         <form
@@ -14,7 +17,7 @@
                     Enter Password
                 </label>
                 <input
-                    class="form-control input-md"
+                    class="form-control input-lg"
                     id="password"
                     name="password"
                     ng-model="vm.password"
@@ -22,7 +25,7 @@
                     placeholder="Enter Password"
                     type="text" />
                 <button
-                    class="btn btn-primary btn-md"
+                    class="submit btn btn-primary btn-lg btn-block"
                     ng-click="vm.validatePassword(); vm.drawing.$setPristine(true)"
                     ng-disabled="vm.drawing.$invalid"
                     type="submit">
@@ -33,7 +36,7 @@
                 <button
                     class="btn btn-primary btn-lg"
                     ng-click="vm.drawWinner()"
-                    ng-disabled="!vm.isAuthorized"
+                    ng-disabled="!vm.isAuthorized || vm.totalEntries === 0"
                     type="submit">
                     Draw Winner!
                 </button>
@@ -49,7 +52,11 @@
                         </p>
                     </div>
                     <div class="has-error">
-                        <!-- error message for error on draw winner submit -->
+                        <p
+                            class="help-block"
+                            ng-show="vm.isAuthorized && vm.totalEntries === 0">
+                            There are no entries to draw from at this time.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -57,11 +64,28 @@
     </div>
     <div class="row">
         <h2>Winners:</h2>
-        <div ng-repeat="winner in vm.winners">
-            {{ winner }}
-        </div>
-        <!-- <div ng-if="vm.winners.length === 0">
-            No winners yet!
-        </div> -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="winner in vm.winners track by $index">
+                <tr>
+                    <td>{{ winner.firstName }}</td>
+                    <td>{{ winner.lastName }}</td>
+                    <td>{{ winner.phoneNumber }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr ng-if="vm.winners.length === 0">
+                    <td colspan="3">
+                        No winners yet!
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 </div>

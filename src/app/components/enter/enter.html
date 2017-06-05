@@ -1,114 +1,119 @@
 <div class="container-fluid" id="form-entry">
-    <div>
-        <h1>Enter Raffle
-            <br/>
-            <small> {{ vm.title }}</small>
-        </h1>
-        <form
-            class="form-inline"
-            name="vm.entryForm"
-            novalidate>
-            <div
-                class="form-group"
-                ng-class="{ 'has-error': vm.entryForm.firstName.$dirty && vm.entryForm.firstName.$invalid}">
-                <label class="sr-only" for="firstName">
-                    First Name
-                </label>
-                <input
-                    class="form-control input-lg"
-                    id="firstName"
-                    name="firstName"
-                    ng-model="vm.entry.firstName"
-                    ng-required="true"
-                    placeholder="First Name"
-                    type="text" />
-            </div>
-            <div
-                class="form-group"
-                ng-class="{ 'has-error': vm.entryForm.lastName.$dirty && vm.entryForm.lastName.$invalid}">
-                <label for="lastName" class="sr-only">
-                    Last Name
-                </label>
-                <input
-                    class="form-control input-lg"
-                    id="lastName"
-                    name="lastName"
-                    ng-model="vm.entry.lastName"
-                    ng-required="true"
-                    placeholder="Last Name"
-                    type="text" />
-            </div>
-            <div
-                class="form-group"
-                ng-class="{ 'has-error': vm.entryForm.phoneNumber.$dirty && vm.entryForm.phoneNumber.$invalid}">
-                <label for="phoneNumber" class="sr-only">
-                    Phone Number
-                </label>
-                <input
-                    class="form-control input-lg"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    ng-model="vm.entry.phoneNumber"
-                    ng-required="true"
-                    placeholder="Phone Number"
-                    type="text" />
-            </div>
-            <br/>
-            <div class="form-group">
-                <div ng-messages="vm.entryForm.$error" class="has-error">
-                    <p
-                        ng-message="required"
-                        ng-if="vm.entryForm.firstName.$dirty && vm.entryForm.firstName.$invalid"
-                        class="help-block">
-                        Missing first name field!
-                    </p>
-                    <p
-                        ng-message="required"
-                        ng-if="vm.entryForm.lastName.$dirty && vm.entryForm.lastName.$invalid"
-                        class="help-block">
-                        Missing last name field!
-                    </p>
-                    <p
-                        ng-message="required"
-                        ng-if="vm.entryForm.phoneNumber.$dirty && vm.entryForm.phoneNumber.$invalid"
-                        class="help-block">
-                        Missing phone number!
-                    </p>
+    <div class="row">
+        <div>
+            <h1>Enter Raffle
+                <br/>
+                <small> {{ vm.title }}</small>
+            </h1>
+            <form
+                class="form-inline"
+                name="vm.entryForm"
+                novalidate>
+                <div
+                    class="form-group"
+                    ng-class="{ 'has-error': vm.entryForm.firstName.$dirty && vm.entryForm.firstName.$invalid}">
+                    <label class="sr-only" for="firstName">
+                        First Name
+                    </label>
+                    <input
+                        class="form-control input-lg"
+                        id="firstName"
+                        name="firstName"
+                        ng-model="vm.entry.firstName"
+                        ng-required="true"
+                        placeholder="First Name"
+                        type="text" />
                 </div>
-                <div ng-messages="vm.entryForm.$submitted" ng-hide="vm.entryForm.$dirty">
-                    <div class="has-success">
+                <div
+                    class="form-group"
+                    ng-class="{ 'has-error': vm.entryForm.lastName.$dirty && vm.entryForm.lastName.$invalid}">
+                    <label for="lastName" class="sr-only">
+                        Last Name
+                    </label>
+                    <input
+                        class="form-control input-lg"
+                        id="lastName"
+                        name="lastName"
+                        ng-model="vm.entry.lastName"
+                        ng-required="true"
+                        placeholder="Last Name"
+                        type="text" />
+                </div>
+                <div
+                    class="form-group"
+                    ng-class="{ 'has-error': vm.entryForm.phoneNumber.$dirty && vm.entryForm.phoneNumber.$invalid}">
+                    <label for="phoneNumber" class="sr-only">
+                        Phone Number
+                    </label>
+                    <input
+                        class="form-control input-lg"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        ng-model="vm.entry.phoneNumber"
+                        ng-required="true"
+                        placeholder="Phone Number"
+                        type="text" />
+                </div>
+                <br/>
+                <div class="form-group">
+                    <div ng-messages="vm.entryForm.$error" class="has-error">
                         <p
-                            ng-show="vm.submitStatus === 'success'"
+                            ng-message="required"
+                            ng-if="vm.entryForm.firstName.$dirty && vm.entryForm.firstName.$invalid"
                             class="help-block">
-                            Successfully submitted!
+                            Missing first name field!
+                        </p>
+                        <p
+                            ng-message="required"
+                            ng-if="vm.entryForm.lastName.$dirty && vm.entryForm.lastName.$invalid"
+                            class="help-block">
+                            Missing last name field!
+                        </p>
+                        <p
+                            ng-message="required"
+                            ng-if="vm.entryForm.phoneNumber.$dirty && vm.entryForm.phoneNumber.$invalid"
+                            class="help-block">
+                            Missing phone number!
                         </p>
                     </div>
-                    <div class="has-error">
-                        <p
-                            ng-show="vm.submitStatus === 'success'"
-                            class="help-block">
-                            {{ vm.errorMessage }}
-                        </p>
+                    <div ng-messages="vm.entryForm.$submitted" ng-hide="vm.entryForm.$dirty">
+                        <div class="has-success">
+                            <p
+                                ng-show="vm.submitStatus === 'success'"
+                                class="help-block">
+                                Successfully submitted!
+                            </p>
+                        </div>
+                        <div class="has-error">
+                            <p
+                                ng-show="vm.submitStatus === 'success'"
+                                class="help-block">
+                                {{ vm.errorMessage }}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="submit">
-                <button
-                    class="btn btn-primary btn-lg"
-                    ng-click="vm.submitEntry(); vm.entryForm.$setPristine(true);"
-                    ng-disabled="vm.entryForm.$invalid"
-                    type="submit">
-                    Submit
-                </button>
-            </div>
-        </form>
-    </div>
-    <div class="text-right">
-        <button
-            class="btn btn-info btn-md"
-            ng-click="vm.redirectToDrawing()"
-            type="submit">
-            View Winners >>
-        </button>
+                <br/>
+                <div class="form-group submit">
+                    <button
+                        class="btn btn-primary btn-lg btn-block"
+                        ng-click="vm.submitEntry(); vm.entryForm.$setPristine(true);"
+                        ng-disabled="vm.entryForm.$invalid"
+                        type="submit">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- <div class="col-lg-3"></div>
+        <div class="col-lg-3"></div> -->
+        <div class="submit text-right">
+            <button
+                class="btn btn-info btn-md"
+                ng-click="vm.redirectToDrawing()"
+                type="submit">
+                View Winners >>
+            </button>
+        </div>
     </div>
 </div>
