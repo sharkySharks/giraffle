@@ -5,10 +5,15 @@ Variables
 /*---------------------------------
 Global
 ---------------------------------*/
-body {
+html, body {
     font-family: 'Roboto Slab', Helvetica, serif;
     color: @gray-dark;
     height: 100%;
+    background: url('/assets/images/giraffe-grey.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 h1 {
     font-weight: bold;
@@ -28,6 +33,9 @@ forms
 #form-entry h1 {
     padding: 20px 0px;
 }
+#form-entry .row {
+  margin: 15px;
+}
 #drawing h1 {
     padding: 20px 0px;
 }
@@ -39,6 +47,10 @@ forms
 }
 #form-create small {
     font-size: 15pt;
+}
+div.container-fluid {
+  background-color: #FFF;
+  border-radius: 25px;
 }
 .help-block {
     font-weight: bold;
