@@ -1,2 +1,2 @@
-# Raffle Me
+# Giraffle
 Quick Raffle Generator and Drawing App
