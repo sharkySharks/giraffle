@@ -7,7 +7,7 @@ var express = require('express'),
     routes = require('./api/routes/raffle.routes');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/Raffledb');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/Raffledb');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -21,6 +21,6 @@ app.use(function(req, res) {
   res.status(404).send({ url: req.originalUrl + ' not found' })
 });
 
-app.listen(port);
+app.listen(process.env.PORT || port);
 
 console.log('Raffle RESTful API server started on: ' + port);
