@@ -5,7 +5,7 @@ Variables
 /*---------------------------------
 Global
 ---------------------------------*/
-html, body {
+body {
     font-family: 'Roboto Slab', Helvetica, serif;
     color: @gray-dark;
     height: 100%;
@@ -47,6 +47,9 @@ forms
 }
 #form-create small {
     font-size: 15pt;
+}
+#drawing .table th {
+    text-align: center;
 }
 div.container-fluid {
   background-color: #FFF;
