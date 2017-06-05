@@ -3,8 +3,7 @@
         .module('raffleApp', [
             'ngRoute',
             'ngMessages',
-            'ngResource',
-            'ngStorage'
+            'ngResource'
         ])
         .config(config);
 
@@ -28,9 +27,13 @@
                 .when('/draw/:id', {
                     templateUrl: 'app/components/draw/draw.html',
                     controller: 'DrawController as vm',
-                    // resolve: {
-                        // user needs to be authorized for specific raffle to access
-                    // }
+                    resolve: {
+                        raffle: function ($route, RaffleSvc) {
+                            return RaffleSvc.get({
+                                id: $route.current.params.id
+                            });
+                        }
+                    }
                 })
         }
 })()

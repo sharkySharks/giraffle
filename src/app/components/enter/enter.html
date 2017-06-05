@@ -1,16 +1,16 @@
 <div class="container-fluid" id="form-entry">
     <div>
-        <h1>Put your name in the raffle.
+        <h1>Enter Raffle
             <br/>
             <small> {{ vm.title }}</small>
         </h1>
         <form
             class="form-inline"
-            name="entry"
+            name="vm.entryForm"
             novalidate>
             <div
                 class="form-group"
-                ng-class="{ 'has-error': entry.firstName.$touched && entry.firstName.$invalid}">
+                ng-class="{ 'has-error': vm.entryForm.firstName.$dirty && vm.entryForm.firstName.$invalid}">
                 <label class="sr-only" for="firstName">
                     First Name
                 </label>
@@ -25,7 +25,7 @@
             </div>
             <div
                 class="form-group"
-                ng-class="{ 'has-error': entry.lastName.$touched && entry.lastName.$invalid}">
+                ng-class="{ 'has-error': vm.entryForm.lastName.$dirty && vm.entryForm.lastName.$invalid}">
                 <label for="lastName" class="sr-only">
                     Last Name
                 </label>
@@ -40,7 +40,7 @@
             </div>
             <div
                 class="form-group"
-                ng-class="{ 'has-error': entry.phoneNumber.$touched && entry.phoneNumber.$invalid}">
+                ng-class="{ 'has-error': vm.entryForm.phoneNumber.$dirty && vm.entryForm.phoneNumber.$invalid}">
                 <label for="phoneNumber" class="sr-only">
                     Phone Number
                 </label>
@@ -54,53 +54,61 @@
                     type="text" />
             </div>
             <br/>
-            <div class="help-block form-group" ng-messages="entry.$error">
-                <p ng-message="required" ng-if="entry.firstName.$touched && entry.firstName.$invalid">
-                    Missing first name field!
-                </p>
-                <p ng-message="required" ng-if="entry.lastName.$touched && entry.lastName.$invalid">
-                    Missing last name field!
-                </p>
-                <p ng-message="required" ng-if="entry.phoneNumber.$touched && entry.phoneNumber.$invalid">
-                    Missing phone number!
-                </p>
+            <div class="form-group">
+                <div ng-messages="vm.entryForm.$error" class="has-error">
+                    <p
+                        ng-message="required"
+                        ng-if="vm.entryForm.firstName.$dirty && vm.entryForm.firstName.$invalid"
+                        class="help-block">
+                        Missing first name field!
+                    </p>
+                    <p
+                        ng-message="required"
+                        ng-if="vm.entryForm.lastName.$dirty && vm.entryForm.lastName.$invalid"
+                        class="help-block">
+                        Missing last name field!
+                    </p>
+                    <p
+                        ng-message="required"
+                        ng-if="vm.entryForm.phoneNumber.$dirty && vm.entryForm.phoneNumber.$invalid"
+                        class="help-block">
+                        Missing phone number!
+                    </p>
+                </div>
+                <div ng-messages="vm.entryForm.$submitted" ng-hide="vm.entryForm.$dirty">
+                    <div class="has-success">
+                        <p
+                            ng-show="vm.submitStatus === 'success'"
+                            class="help-block">
+                            Successfully submitted!
+                        </p>
+                    </div>
+                    <div class="has-error">
+                        <p
+                            ng-show="vm.submitStatus === 'success'"
+                            class="help-block">
+                            {{ vm.errorMessage }}
+                        </p>
+                    </div>
+                </div>
             </div>
             <div class="submit">
                 <button
                     class="btn btn-primary btn-lg"
-                    ng-click="vm.submitEntry()"
-                    ng-disabled="entry.$invalid"
+                    ng-click="vm.submitEntry(); vm.entryForm.$setPristine(true);"
+                    ng-disabled="vm.entryForm.$invalid"
                     type="submit">
                     Submit
                 </button>
             </div>
         </form>
     </div>
-    <div>
-        <h3>Draw A Winner.</h3>
-        <form
-            class="form-inline"
-            name="validatePassword"
-            novalidate>
-            <div class="form-group">
-                <label for="password" class="sr-only">
-                    Raffle Password
-                </label>
-                <input
-                    class="form-control input-md"
-                    id="password"
-                    name="password"
-                    ng-model="vm.rafflePassword"
-                    ng-required="true"
-                    placeholder="Raffle Password"
-                    type="text" />
-                <button
-                    class="btn btn-primary btn-md"
-                    ng-click="vm.validatePassword()"
-                    ng-disabled="validatePassword.$invalid"
-                    type="submit">
-                    Draw Winner
-                </button>
-        </form>
+    <div class="text-right">
+        <button
+            class="btn btn-info btn-md"
+            ng-click="vm.redirectToDrawing()"
+            type="submit">
+            View Winners >>
+        </button>
     </div>
 </div>

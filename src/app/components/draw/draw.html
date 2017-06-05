@@ -1,3 +1,67 @@
-<div>
-    <h1>Let's Draw Some Winners!</h1>
+<div class="container-fluid" id="drawing">
+    <h1>Draw Winners!
+        <br/>
+        <small>{{ vm.title }} | # Entries: {{ vm.totalEntries }}<div>
+    </div></small>
+    </h1>
+    <div>
+        <form
+            class="form-inline"
+            name="vm.drawing"
+            novalidate>
+            <div class="form-group" ng-hide="vm.isAuthorized">
+                <label for="password" class="sr-only">
+                    Enter Password
+                </label>
+                <input
+                    class="form-control input-md"
+                    id="password"
+                    name="password"
+                    ng-model="vm.password"
+                    ng-required="true"
+                    placeholder="Enter Password"
+                    type="text" />
+                <button
+                    class="btn btn-primary btn-md"
+                    ng-click="vm.validatePassword(); vm.drawing.$setPristine(true)"
+                    ng-disabled="vm.drawing.$invalid"
+                    type="submit">
+                    Submit
+                </button>
+            </div>
+            <div class="submit" ng-show="vm.isAuthorized">
+                <button
+                    class="btn btn-primary btn-lg"
+                    ng-click="vm.drawWinner()"
+                    ng-disabled="!vm.isAuthorized"
+                    type="submit">
+                    Draw Winner!
+                </button>
+            </div>
+            <br/>
+            <div class="form-group">
+                <div ng-messages="vm.drawing.$submitted">
+                    <div class="has-error">
+                        <p
+                            ng-hide="vm.isAuthorized"
+                            class="help-block">
+                            {{ vm.errorMessage }}
+                        </p>
+                    </div>
+                    <div class="has-error">
+                        <!-- error message for error on draw winner submit -->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <h2>Winners:</h2>
+        <div ng-repeat="winner in vm.winners">
+            {{ winner }}
+        </div>
+        <!-- <div ng-if="vm.winners.length === 0">
+            No winners yet!
+        </div> -->
+    </div>
 </div>

@@ -5,19 +5,22 @@
         .module('raffleApp')
         .factory('AuthSvc', AuthSvc);
 
-        AuthSvc.$inject = ['$resource'];
+        AuthSvc.$inject = ['$resource', '$window'];
 
-        function AuthSvc ($resource) {
+        function AuthSvc ($resource, $window) {
             return {
-                auth: authenticate()
+                auth: authenticate(),
+                set: set,
+                isAuthorized: isAuthorized
             }
 
-            // // set local storage key 'raffle' with:
-            //     // raffle name, id, and isAuthorized = false as the default
+            function set (raffleName) {
+                $window.localStorage.setItem(raffleName, JSON.stringify(true))
+            }
 
-            // function set () {
-            //     // raffle name/id set isAuthorized to true when authenticated
-            // }
+            function isAuthorized (raffleName) {
+                return $window.localStorage.getItem(raffleName) === 'true';
+            }
 
             function authenticate () {
                 return $resource('/api/raffles/:id/auth', { id: '@id' });

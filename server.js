@@ -17,12 +17,8 @@ routes(app)
 app.use(express.static(__dirname + '/src'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
-app.get('/', function(req, res){
-  res.redirect('index.html');
-});
-
 app.use(function(req, res) {
-  res.status(404).send({url: req.originalUrl + ' not found'})
+  res.status(404).send({ url: req.originalUrl + ' not found' })
 });
 
 app.listen(port);

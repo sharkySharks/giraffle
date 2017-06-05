@@ -6,7 +6,7 @@ Variables
 Global
 ---------------------------------*/
 body {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto Slab', Helvetica, serif;
     color: @gray-dark;
     height: 100%;
 }
@@ -28,6 +28,11 @@ forms
 #form-entry h1 {
     padding: 20px 0px;
     font-size: 30pt;
+    /*text-align:center;*/
+}
+#drawing h1 {
+    padding: 20px 0px;
+    font-size: 30pt;
 }
 #form-create h1 {
     padding: 20px 0px;
@@ -39,13 +44,12 @@ forms
     font-size: 15pt;
 }
 .help-block {
-    color: #d0504e;
-    padding: 5px 0px;
+    font-weight: bold;
 }
 .submit {
     padding: 10px 0px;
     margin: 10px 0px;
 }
-.has-error input{
+.has-error input {
     background-color: #d0504e;
 }

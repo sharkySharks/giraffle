@@ -43,7 +43,7 @@ function update_a_raffle (req, res) {
 function validate_password (req, res) {
     Raffle.findById(req.params.id, function (err, raffle) {
         if (err) {
-            res.send(err)
+            res.status('404').send(err);
         }
         raffle.comparePassword(req.body.password, function (err, isMatch) {
             if (err) res.send(err);

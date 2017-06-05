@@ -16,6 +16,10 @@ var RaffleSchema = new Schema({
     entries: {
         type: Array,
         default: []
+    },
+    winners: {
+        type: Array,
+        default: []
     }
 });
 

@@ -5,10 +5,14 @@
         .module('raffleApp')
         .controller('EnterController', EnterController)
 
-        EnterController.$inject = ['raffle', 'AuthSvc'];
+        EnterController.$inject = ['raffle', '$location'];
 
-        function EnterController (raffle, AuthSvc) {
+        function EnterController (raffle, $location) {
             var vm = this;
+
+            vm.activate = activate;
+            vm.submitEntry = submitEntry;
+            vm.redirectToDrawing = redirectToDrawing;
 
             vm.entry = {
                 firstName: '',
@@ -17,12 +21,9 @@
             }
 
             vm.rafflePassword = ''
+            vm.submitStatus = '';
 
-            vm.submitEntry = submitEntry;
-            vm.validatePassword = validatePassword;
-
-
-            activate();
+            vm.activate();
 
             function activate () {
                 raffle.$promise.then(function (raffle) {
@@ -31,25 +32,26 @@
                 });
             }
 
-            function submitEntry () {
+            function submitEntry (entry) {
                 vm.raffle.entries.push(vm.entry);
 
                 vm.raffle.$update({ id: raffle._id }, function (data) {
-                    console.log('data:', data);
+                    vm.submitStatus = 'success';
+
+                    vm.entry = {
+                        firstName: '',
+                        lastName: '',
+                        phoneNumber: ''
+                    }
+
+                }, function (err) {
+                    vm.submitStatus = 'error'
+                    vm.errorMessage = 'An error occurred: ' + err;
                 });
             }
 
-            function validatePassword () {
-                vm.auth = new AuthSvc.auth;
-                vm.auth.password = vm.rafflePassword;
-                vm.auth.$save({ id: raffle._id }, function (data) {
-                    console.log('data:', data);
-                }, function (err) {
-                    console.log('error:', err);
-                });
-                // on success store verification in localstorage so user continues to be
-                    // authenticated after they give the right password
-                // redirect to the drawing page
+            function redirectToDrawing () {
+                $location.path('/draw/' + raffle._id)
             }
         }
 })()
