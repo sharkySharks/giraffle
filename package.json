@@ -23,7 +23,8 @@
   },
   "scripts": {
     "dev": "lite-server -c=bs-config.json",
-    "start": "node server.js"
+    "start": "node server.js",
+    "watch": "nodemon server.js --watch src --watch api"
   },
   "engines": {
     "node": "7.10.0"

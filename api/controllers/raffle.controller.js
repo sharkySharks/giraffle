@@ -1,12 +1,11 @@
 'use strict';
+
 var mongoose = require('mongoose'),
     Raffle = mongoose.model('Raffles');
 
 function list_all_raffles (req, res) {
     Raffle.find({}, function (err, raffles) {
-        if (err) {
-            res.send(err);
-        }
+        if (err) { res.send(err); }
         res.json(raffles);
     });
 }
@@ -15,9 +14,7 @@ function create_a_raffle (req, res) {
     var new_raffle = new Raffle(req.body);
 
     new_raffle.save(function (err, raffle) {
-        if (err) {
-            res.send(err);
-        }
+        if (err) { res.send(err); }
         res.json(raffle);
     });
 }
@@ -32,11 +29,25 @@ function list_a_raffle (req, res) {
 }
 
 function update_a_raffle (req, res) {
-    Raffle.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, function (err, raffle) {
-        if (err) {
-            res.send(err);
-        }
-        res.json(raffle)
+    var newEntry = req.body.entries.pop();
+
+    // convert entry to lowercase to prevent case duplications
+    for(var prop in newEntry) {
+        newEntry[prop] = newEntry[prop].toLowerCase();
+    }
+
+    Raffle.update({ _id: req.params.id }, {$addToSet: {"entries": newEntry}}, {new: true}, function (err, result) {
+            if (err) { res.send(err); }
+            if (result.nModified === 0) {
+                // no records were updated due to a duplicate entry
+                res.status('400').send('Duplicate entries not accepted.');
+            } else {
+                // update returns the count of results, findById returns the document
+                Raffle.findById(req.params.id, function (err, raffle) {
+                    if (err) { res.send(err); }
+                    res.json(raffle);
+                });
+            }
     });
 }
 

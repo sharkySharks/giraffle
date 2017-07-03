@@ -32,7 +32,7 @@
                 });
             }
 
-            function submitEntry (entry) {
+            function submitEntry () {
                 vm.raffle.entries.push(vm.entry);
 
                 vm.raffle.$update({ id: raffle._id }, function (data) {
@@ -46,7 +46,7 @@
 
                 }, function (err) {
                     vm.submitStatus = 'error'
-                    vm.errorMessage = 'An error occurred: ' + err;
+                    vm.errorMessage = 'An error occurred: ' + err.data || err;
                 });
             }
 

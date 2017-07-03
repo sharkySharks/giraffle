@@ -51,7 +51,7 @@
                         name="phoneNumber"
                         ng-model="vm.entry.phoneNumber"
                         ng-required="true"
-                        placeholder="Phone Number"
+                        placeholder="Phone # 555-555-5555"
                         type="text" />
                 </div>
                 <br/>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="has-error">
                             <p
-                                ng-show="vm.submitStatus === 'success'"
+                                ng-show="vm.submitStatus === 'error'"
                                 class="help-block">
                                 {{ vm.errorMessage }}
                             </p>
