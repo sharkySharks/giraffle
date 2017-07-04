@@ -37,13 +37,11 @@
 
                 vm.raffle.$update({ id: raffle._id }, function (data) {
                     vm.submitStatus = 'success';
-
                     vm.entry = {
                         firstName: '',
                         lastName: '',
                         phoneNumber: ''
                     }
-
                 }, function (err) {
                     vm.submitStatus = 'error'
                     vm.errorMessage = 'An error occurred: ' + err.data || err;
