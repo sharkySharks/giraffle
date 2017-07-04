@@ -1,17 +1,24 @@
 (function() {
     angular
         .module('raffleApp', [
-            'ngRoute',
+            'angular-google-analytics',
             'ngMessages',
-            'ngResource'
+            'ngResource',
+            'ngRoute'
         ])
-        .config(config);
+        .config(config)
+        .run(['Analytics', function(Analytics) { }]);
 
-        function config($routeProvider) {
+        function config($routeProvider, AnalyticsProvider) {
+            AnalyticsProvider
+                .setAccount('UA-104248956-2')
+                .readFromRoute(true);
+
             $routeProvider
                 .when('/', {
                     templateUrl: 'app/components/create/create.html',
-                    controller: 'CreateController as vm'
+                    controller: 'CreateController as vm',
+                    pageTrack: '/'
                 })
                 .when('/enter/:id', {
                     templateUrl: 'app/components/enter/enter.html',
@@ -22,7 +29,8 @@
                                 id: $route.current.params.id
                             });
                         }
-                    }
+                    },
+                    pageTrack: '/enter'
                 })
                 .when('/draw/:id', {
                     templateUrl: 'app/components/draw/draw.html',
@@ -33,7 +41,9 @@
                                 id: $route.current.params.id
                             });
                         }
-                    }
+                    },
+                    pageTrack: '/draw'
                 })
+
         }
 })()

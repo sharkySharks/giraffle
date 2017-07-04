@@ -38,17 +38,15 @@
             }
 
             function drawWinner () {
-
                 RaffleSvc.get({ id: raffle._id }, function (raffle) {
                     var winnerIndex = getRandomInt(raffle.entries.length)
                     var winner = raffle.entries[winnerIndex];
-
                     // add the winner to the winner array
                     raffle.winners.push(winner);
                     // remove the winner from the entries array so that they cannot be selected again
                     raffle.entries.splice(winnerIndex, 1);
 
-                    raffle.$update({ id: raffle._id }, function (raffle) {
+                    raffle.$update({ id: raffle._id, winners: true }, function (raffle) {
                         vm.winners = raffle.winners;
                         vm.totalEntries = raffle.entries.length;
                     }, function (err) {
