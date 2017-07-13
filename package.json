@@ -28,7 +28,7 @@
     "watch": "nodemon server.js --watch src --watch api"
   },
   "engines": {
-    "node": "7.10.0"
+    "node": "7.10.1"
   },
   "repository": {}
 }
