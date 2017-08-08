@@ -44,6 +44,10 @@ ajv@^4.9.1:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
+angular-google-analytics@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/angular-google-analytics/-/angular-google-analytics-1.1.8.tgz#e497926c0f77cd6eec0c0cbdf0b20e58938cf8a0"
+
 angular-messages@^1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.6.4.tgz#9ec9c1393293b14de54161d2f849776489e980fe"
