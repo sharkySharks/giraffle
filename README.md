@@ -13,6 +13,7 @@ Nice-to-have features:
 - option to text short link to user to view results after entering raffle
 - improved authorization controls
 - better handling of input validation for users
+- add testing
 
 ## Running Application
 
@@ -70,3 +71,7 @@ npm run watch
 ```
 
 After running the above commands you should see the application successfully run and output the localhost url and port where you can view the application running in your browser.
+
+## Deployed Application
+
+This application is deployed using Heroku and MongoDB Atlas.
