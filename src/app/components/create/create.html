@@ -2,65 +2,66 @@
     <div>
         <h1>Create A Giraffle
             <br/>
-            <small>Anyone with the raffle password will have access to draw winners.</small>
+            <small class="text-center">[Anyone with the raffle password will have access to draw winners.]</small>
         </h1>
-        <form
-            class="form-inline"
+        <div class="col">
+            <form
             name="vm.create"
             novalidate>
-            <div
-                class="form-group"
-                ng-class="{ 'has-error': vm.create.raffleName.$dirty && vm.create.raffleName.$invalid}">
-                <label for="raffleName" class="sr-only">Raffle Name</label>
-                <input
-                    class="form-control input-lg"
-                    id="raffleName"
-                    name="raffleName"
-                    ng-model="vm.raffle.name"
-                    ng-required="true"
-                    placeholder="Raffle Name"
-                    type="text" />
-            </div>
-            <div
-                class="form-group"
-                ng-class="{ 'has-error': vm.create.rafflePassword.$dirty && vm.create.rafflePassword.$invalid}">
-                <label for="rafflePassword" class="sr-only">Raffle Password</label>
-                <input
-                    class="form-control input-lg"
-                    id="rafflePassword"
-                    name="rafflePassword"
-                    ng-model="vm.raffle.password"
-                    ng-required="true"
-                    placeholder="Raffle Password"
-                    type="text" />
-            </div>
-            <br/>
-            <div
-                class="has-error form-group"
-                ng-messages="vm.create.$error"
-                ng-if="vm.create.$error">
-                <p
-                    class="help-block"
-                    ng-message="required"
-                    ng-if="vm.create.raffleName.$dirty && vm.create.raffleName.$invalid">
-                    Raffle needs a name!
-                </p>
-                <p
-                    class="help-block"
-                    ng-message="required"
-                    ng-if="vm.create.rafflePassword.$dirty && vm.create.rafflePassword.$invalid">
-                    Raffle needs a password!
-                </p>
-            </div>
-            <div class="submit">
-                <button
-                    class="btn btn-primary btn-lg"
-                    ng-click="vm.submit()"
-                    ng-disabled="vm.create.$invalid"
-                    type="submit">
-                    Create Giraffle
-                </button>
-            </div>
-        </form>
+                <div
+                    class="form-group"
+                    ng-class="{ 'has-error': vm.create.raffleName.$dirty && vm.create.raffleName.$invalid}">
+                    <label for="raffleName" class="sr-only">Raffle Name</label>
+                    <input
+                        class="form-control input-lg"
+                        id="raffleName"
+                        name="raffleName"
+                        ng-model="vm.raffle.name"
+                        ng-required="true"
+                        placeholder="Raffle Name"
+                        type="text" />
+                </div>
+                <div
+                    class="form-group"
+                    ng-class="{ 'has-error': vm.create.rafflePassword.$dirty && vm.create.rafflePassword.$invalid}">
+                    <label for="rafflePassword" class="sr-only">Raffle Password</label>
+                    <input
+                        class="form-control input-lg"
+                        id="rafflePassword"
+                        name="rafflePassword"
+                        ng-model="vm.raffle.password"
+                        ng-required="true"
+                        placeholder="Raffle Password"
+                        type="text" />
+                </div>
+                <div
+                    class="has-error form-group"
+                    ng-messages="vm.create.$error"
+                    ng-if="vm.create.$error">
+                    <br/>
+                    <p
+                        class="help-block"
+                        ng-message="required"
+                        ng-if="vm.create.raffleName.$dirty && vm.create.raffleName.$invalid">
+                        Raffle needs a name!
+                    </p>
+                    <p
+                        class="help-block"
+                        ng-message="required"
+                        ng-if="vm.create.rafflePassword.$dirty && vm.create.rafflePassword.$invalid">
+                        Raffle needs a password!
+                    </p>
+                </div>
+                <div class="submit text-center">
+                    <button
+                        class="btn btn-primary btn-lg"
+                        ng-click="vm.submit()"
+                        ng-disabled="vm.create.$invalid"
+                        type="submit">
+                        Create Giraffle
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

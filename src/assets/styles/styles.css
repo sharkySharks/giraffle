@@ -1,13 +1,9 @@
 /*---------------------------------
-Variables
----------------------------------*/
-@gray-dark:    lighten(#000, 20%);
-/*---------------------------------
 Global
 ---------------------------------*/
 body {
     font-family: 'Roboto Slab', Helvetica, serif;
-    color: @gray-dark;
+    color: lighten(#000, 20%);
     height: 100%;
     background: url('/assets/images/giraffe-grey.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -34,7 +30,7 @@ forms
     padding: 20px 0px;
 }
 #form-entry .row {
-  margin: 15px;
+    margin: 15px;
 }
 #drawing h1 {
     padding: 20px 0px;
@@ -52,8 +48,8 @@ forms
     text-align: center;
 }
 div.container-fluid {
-  background-color: #FFF;
-  border-radius: 25px;
+    background-color: #FFF;
+    border-radius: 25px;
 }
 .help-block {
     font-weight: bold;

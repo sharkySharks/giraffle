@@ -8,7 +8,8 @@ var nr = require('newrelic'),
     routes = require('./api/routes/raffle.routes');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/Raffledb');
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/Raffledb', { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,4 +25,4 @@ app.use(function(req, res) {
 
 app.listen(process.env.PORT || port);
 
-console.log('Raffle RESTful API server started on: ' + port);
+console.log('Raffle RESTful API server started on: localhost:' + port);
