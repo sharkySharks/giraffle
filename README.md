@@ -5,16 +5,6 @@ Quick Raffle Generator and Drawing App
 
 ![website](src/assets/images/website.png)
 
-## Future Features
-"...a work is never truly completed [...] but abandoned..." Paul Valéry
-
-Nice-to-have features:
-- shortened links for easy raffle link sharing
-- option to text short link to user to view results after entering raffle
-- improved authorization controls
-- better handling of input validation for users
-- add testing
-
 ## Running Application
 
 ### Initial setup
@@ -75,3 +65,13 @@ After running the above commands you should see the application successfully run
 ## Deployed Application
 
 This application is deployed using Heroku and MongoDB Atlas.
+
+## Future Features
+"...a work is never truly completed [...] but abandoned..." Paul Valéry
+
+Nice-to-have features:
+- shortened links for easy raffle link sharing
+- option to text short link to user to view results after entering raffle
+- improved authorization controls
+- better handling of input validation for users
+- add testing
